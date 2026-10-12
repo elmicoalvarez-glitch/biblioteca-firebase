@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+  =============================================================
+  index.html -> PANTALLA DE LOGIN (inicio de sesión)
+  =============================================================
+  Es la primera página que ve cualquier persona. Solo tiene un
+  botón: "Iniciar sesión con Google". No hay formulario de
+  usuario/contraseña propio: delegamos TODA la seguridad de login
+  a Google a través de Firebase Authentication.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Escolar - Iniciar sesión</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <div class="contenedor-login">
+    <h1>📚 Biblioteca Escolar</h1>
+    <p>Sistema de préstamo de libros para estudiantes y profesores</p>
+
+    <button id="btn-login-google">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+      Iniciar sesión con tu cuenta de Gmail
+    </button>
+
+    <div id="mensaje-error"></div>
+  </div>
+
+  <!--
+    ORDEN DE LOS SCRIPTS (MUY IMPORTANTE):
+    1) Primero cargamos las librerías de Firebase (desde su CDN).
+    2) Luego nuestro firebase-config.js, que las inicializa.
+    3) Al final, auth.js, que ya puede usar "auth" y "db".
+    Si se invierte el orden, firebase-config.js fallaría porque
+    el objeto global "firebase" todavía no existiría.
+  -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

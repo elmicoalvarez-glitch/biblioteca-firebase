@@ -1,0 +1,70 @@
+// =============================================================
+// REGLAS DE SEGURIDAD DE FIRESTORE
+// =============================================================
+// Estas reglas son la VERDADERA seguridad de la base de datos.
+// No importa qué botones ocultemos en el HTML: si estas reglas
+// no están bien escritas, cualquier persona con conocimientos
+// técnicos podría leer o modificar datos desde la consola del
+// navegador. Las reglas corren en los servidores de Google, no
+// en la página web, así que nadie las puede saltar.
+//
+// Idea general:
+//  - Solo un usuario con sesión iniciada (request.auth != null)
+//    puede leer o escribir algo.
+//  - Solo un "admin" puede crear/editar/eliminar libros y
+//    modificar el rol o eliminar a otros usuarios.
+//  - Un usuario puede leer/escribir su PROPIO documento de perfil
+//    (para que se pueda crear a sí mismo al iniciar sesión por
+//    primera vez), pero no el de otra persona.
+//  - Cualquier usuario autenticado puede leer préstamos y crear
+//    uno propio, pero no puede editar préstamos de otra persona.
+
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Función de ayuda: ¿el usuario que hace la petición es admin?
+    function esAdmin() {
+      return request.auth != null &&
+        get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.rol == "admin";
+    }
+
+    // ---------------- USUARIOS ----------------
+    match /usuarios/{idUsuario} {
+      // Cualquiera autenticado puede leer la lista (para mostrar
+      // nombres en los préstamos, por ejemplo).
+      allow read: if request.auth != null;
+
+      // Un usuario puede crear/actualizar SU PROPIO documento
+      // (primer login), o un admin puede modificar cualquiera.
+      allow create: if request.auth != null && request.auth.uid == idUsuario;
+      allow update, delete: if esAdmin() || (request.auth != null && request.auth.uid == idUsuario);
+    }
+
+    // ---------------- LIBROS ----------------
+    match /libros/{idLibro} {
+      // Todos los autenticados pueden VER el catálogo
+      allow read: if request.auth != null;
+      // Solo un admin puede crear, editar o borrar libros
+      allow create, update, delete: if esAdmin();
+    }
+
+    // ---------------- PRÉSTAMOS ----------------
+    match /prestamos/{idPrestamo} {
+      allow read: if request.auth != null;
+
+      // Crear un préstamo: solo para uno mismo (idUsuario debe ser
+      // igual al uid de quien hace la petición)
+      allow create: if request.auth != null &&
+        request.resource.data.idUsuario == request.auth.uid;
+
+      // Actualizar (ej. devolver el libro): el dueño del préstamo
+      // o un admin
+      allow update: if esAdmin() ||
+        (request.auth != null && resource.data.idUsuario == request.auth.uid);
+
+      allow delete: if esAdmin();
+    }
+  }
+}

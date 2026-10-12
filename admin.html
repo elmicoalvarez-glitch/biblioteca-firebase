@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+  =============================================================
+  admin.html -> PANTALLA DE ADMINISTRADOR
+  =============================================================
+  Solo entra aquí quien tiene rol "admin" en Firestore (ver
+  protegerPaginaAdmin en auth.js). Desde esta pantalla se gestiona
+  TODO el sistema:
+    1) Libros: agregar, editar y eliminar
+    2) Usuarios: ver todos, cambiar su rol, eliminar su perfil
+    3) Préstamos: ver el historial completo de todos los usuarios
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Escolar - Administración</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header>
+    <h1>📚 Biblioteca Escolar — Panel de administrador</h1>
+    <div class="usuario-info">
+      <img id="foto-usuario" class="avatar" src="" alt="Foto">
+      <span id="nombre-usuario"></span>
+      <button onclick="cerrarSesion()">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================= LIBROS ======================= -->
+    <section class="seccion">
+      <h2>Gestión de libros</h2>
+
+      <form id="formulario-libro" class="formulario-fila">
+        <input type="hidden" id="libro-id-edicion">
+        <input type="text" id="libro-titulo" placeholder="Título" required>
+        <input type="text" id="libro-autor" placeholder="Autor" required>
+        <input type="text" id="libro-categoria" placeholder="Categoría" required>
+        <input type="number" id="libro-cantidad" placeholder="Cantidad de copias" min="1" required>
+        <button type="submit" id="boton-guardar-libro">Agregar libro</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th><th>Autor</th><th>Categoría</th>
+            <th>Disponibles</th><th>Total</th><th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-admin-libros"></tbody>
+      </table>
+    </section>
+
+    <!-- ======================= USUARIOS ======================= -->
+    <section class="seccion">
+      <h2>Gestión de usuarios</h2>
+      <table>
+        <thead>
+          <tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Acciones</th></tr>
+        </thead>
+        <tbody id="tabla-admin-usuarios"></tbody>
+      </table>
+    </section>
+
+    <!-- ======================= PRÉSTAMOS ======================= -->
+    <section class="seccion">
+      <h2>Historial de préstamos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Libro</th><th>Usuario</th><th>Correo</th>
+            <th>Fecha préstamo</th><th>Devolución esperada</th><th>Estado</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-admin-prestamos"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/libros.js"></script>
+  <script src="js/usuarios.js"></script>
+  <script src="js/prestamos.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

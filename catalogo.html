@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+  =============================================================
+  catalogo.html -> PANTALLA DE ESTUDIANTES Y PROFESORES
+  =============================================================
+  Aquí un usuario normal (rol "estudiante" o "profesor") puede:
+    1) Ver el catálogo de libros y cuántas copias hay disponibles
+    2) Solicitar un préstamo de un libro disponible
+    3) Ver la lista de SUS propios préstamos y marcar "Devolver"
+  Esta página está protegida: si alguien no ha iniciado sesión,
+  js/catalogo.js lo manda de vuelta a index.html (ver protegerPagina
+  en auth.js).
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Escolar - Catálogo</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header>
+    <h1>📚 Biblioteca Escolar</h1>
+    <div class="usuario-info">
+      <img id="foto-usuario" class="avatar" src="" alt="Foto">
+      <span id="nombre-usuario"></span>
+      <button onclick="cerrarSesion()">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="seccion">
+      <h2>Catálogo de libros disponibles</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Categoría</th>
+            <th>Disponibles</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-catalogo"><!-- se llena con JS --></tbody>
+      </table>
+    </section>
+
+    <section class="seccion">
+      <h2>Mis préstamos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Libro</th>
+            <th>Fecha de préstamo</th>
+            <th>Devolución esperada</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-mis-prestamos"><!-- se llena con JS --></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script src="js/firebase-config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/libros.js"></script>
+  <script src="js/prestamos.js"></script>
+  <script src="js/catalogo.js"></script>
+</body>
+</html>
