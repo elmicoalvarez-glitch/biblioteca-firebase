@@ -13,12 +13,12 @@
 // Ahí Firebase te muestra un bloque de código igual a este, ya con tus
 // propios valores. Debes copiar y pegar ESE bloque reemplazando el de abajo.
 const firebaseConfig = {
-  apiKey: "PEGA_AQUI_TU_API_KEY",
-  authDomain: "PEGA_AQUI_TU_PROYECTO.firebaseapp.com",
-  projectId: "PEGA_AQUI_TU_PROJECT_ID",
-  storageBucket: "PEGA_AQUI_TU_PROYECTO.appspot.com",
-  messagingSenderId: "PEGA_AQUI_TU_SENDER_ID",
-  appId: "PEGA_AQUI_TU_APP_ID"
+  apiKey: "AIzaSyDsd9i_ND-VmHVvnYcuaBlVf4lieOA8jUk",
+  authDomain: "biblioteca-escolar-firebase.firebaseapp.com",
+  projectId: "biblioteca-escolar-firebase",
+  storageBucket: "biblioteca-escolar-firebase.firebasestorage.app",
+  messagingSenderId: "716495078452",
+  appId: "1:716495078452:web:c96b058daf5f32098d7661"
 };
 
 // Inicializamos (encendemos) la conexión con Firebase usando la
