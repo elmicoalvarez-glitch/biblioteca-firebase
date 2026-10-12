@@ -1,0 +1,192 @@
+/* =============================================================
+   ESTILOS GENERALES
+   Este archivo se usa en las 3 páginas (index, catalogo, admin)
+   ============================================================= */
+
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #f2f4f7;
+  color: #1f2937;
+}
+
+/* ---------- Barra superior ---------- */
+header {
+  background-color: #1d4ed8;
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+header .usuario-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header img.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+header button {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ---------- Pantalla de login ---------- */
+.contenedor-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.contenedor-login h1 {
+  color: #1d4ed8;
+  margin-bottom: 4px;
+}
+
+.contenedor-login p {
+  color: #4b5563;
+  margin-bottom: 30px;
+}
+
+#btn-login-google {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+#btn-login-google img {
+  width: 20px;
+  height: 20px;
+}
+
+#mensaje-error {
+  color: #dc2626;
+  margin-top: 16px;
+  min-height: 20px;
+}
+
+/* ---------- Contenido principal ---------- */
+main {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.seccion {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.seccion h2 {
+  margin-top: 0;
+  color: #1d4ed8;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 8px;
+}
+
+/* ---------- Formularios ---------- */
+form.formulario-fila {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+form.formulario-fila input,
+form.formulario-fila select {
+  flex: 1;
+  min-width: 120px;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+form.formulario-fila button {
+  background-color: #1d4ed8;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ---------- Tablas ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.92rem;
+}
+
+table th {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: white;
+}
+
+.badge-disponible { background-color: #16a34a; }
+.badge-agotado { background-color: #dc2626; }
+.badge-prestado { background-color: #d97706; }
+.badge-devuelto { background-color: #16a34a; }
+.badge-admin { background-color: #7c3aed; }
+.badge-estudiante { background-color: #2563eb; }
+.badge-profesor { background-color: #0891b2; }
+
+.btn-accion {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.85rem;
+  margin-right: 4px;
+}
+
+.btn-editar { background-color: #f59e0b; }
+.btn-eliminar { background-color: #dc2626; }
+.btn-prestar { background-color: #1d4ed8; }
+.btn-devolver { background-color: #16a34a; }
